@@ -1,0 +1,37 @@
+{
+    "towns": [
+        {
+            "name": "Nairobi",
+            "roads_to": [
+                {"Nakuru": 123},
+                {"Thika": 123},
+                {"Mombasa": 123}
+            ]
+        },
+        {
+            "name": "Nakuru",
+            "roads_to": [
+                {"Nairobi": 123},
+                {"Kisumu": 123}
+            ]
+        },
+        {
+            "name": "Kisumu",
+            "roads_to": [
+                {"Nakuru": 123}
+            ]
+        },
+        {
+            "name": "Thika",
+            "roads_to": [
+                {"Nairobi": 123}
+            ]
+        },
+        {
+            "name": "Mombasa",
+            "roads_to": [
+                {"Nairobi": 123}
+            ]
+        }
+    ]
+}

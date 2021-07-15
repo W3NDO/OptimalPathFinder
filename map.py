@@ -1,9 +1,6 @@
 import pygame
 from pygame.locals import *
 
-
-pygame.init()
-
 display_width = 800
 display_height = 600
 
@@ -14,26 +11,14 @@ shade = (40,40,40)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 
-start=(0,0)
-size = (0,0)
-
-
-
 screen= pygame.display.set_mode((display_width,display_height))
-
-def generate_towns(n):
-    print(n)
 
 pygame.init()
 running = True
-
-
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-        
-    
+            running = False 
     
     screen.fill(shade)
     #Draw all the 5 towns
