@@ -26,8 +26,8 @@ for i in range(len(towns)):
     graph.addNode(n)
     #print(graph.nodes)
 
-start =graph.setStart("Thika")
-end = graph.setEnd("Mombasa")
+start =graph.setStart("Mombasa")
+end = graph.setEnd("Kisumu")
 
 queue = []
 
@@ -36,7 +36,7 @@ queue.append(start)
 
 while len(queue) > 0:
     current = queue.pop(0)
-    print("Checking : ", current.value)
+    #print("Checking : ", current.value)
     if current == end:
         print("Found:", current.value)
         break
@@ -49,3 +49,21 @@ while len(queue) > 0:
             neighbour.searched = True
             neighbour.parent = current
             queue.append(neighbour)
+
+
+path = []
+path.append(end)
+nextNode = end.parent
+while nextNode != None:
+    path.append(nextNode)
+    nextNode = nextNode.parent
+
+txt = "Path :: "
+
+for i in range(len(path))[::-1]:
+    n = path[i]
+    txt += n.value 
+    if i != 0:
+        txt += " --> "
+
+print(txt) 
