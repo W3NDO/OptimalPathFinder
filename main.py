@@ -24,4 +24,28 @@ for i in range(len(towns)):
         # print(road)
 
     graph.addNode(n)
-    print(graph.nodes)
+    #print(graph.nodes)
+
+start =graph.setStart("Thika")
+end = graph.setEnd("Mombasa")
+
+queue = []
+
+start.searched = True
+queue.append(start)
+
+while len(queue) > 0:
+    current = queue.pop(0)
+    print("Checking : ", current.value)
+    if current == end:
+        print("Found:", current.value)
+        break
+
+    edges = current.edges
+    for edge in edges:
+        neighbour = graph.getNode(list(edge.keys())[0])
+#        print(current.value, "is neighbours with ", neighbour.value)
+        if not neighbour.searched:
+            neighbour.searched = True
+            neighbour.parent = current
+            queue.append(neighbour)
