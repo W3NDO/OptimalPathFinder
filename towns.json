@@ -3,34 +3,34 @@
         {
             "name": "Nairobi",
             "roads_to": [
-                {"Nakuru": 123},
-                {"Thika": 123},
-                {"Mombasa": 123}
+                {"Nakuru": 237},
+                {"Thika": 45},
+                {"Mombasa": 483}
             ]
         },
         {
             "name": "Nakuru",
             "roads_to": [
-                {"Nairobi": 123},
-                {"Kisumu": 123}
+                {"Nairobi": 237},
+                {"Kisumu": 185}
             ]
         },
         {
             "name": "Kisumu",
             "roads_to": [
-                {"Nakuru": 123}
+                {"Nakuru": 185}
             ]
         },
         {
             "name": "Thika",
             "roads_to": [
-                {"Nairobi": 123}
+                {"Nairobi": 45}
             ]
         },
         {
             "name": "Mombasa",
             "roads_to": [
-                {"Nairobi": 123}
+                {"Nairobi": 483}
             ]
         }
     ]
