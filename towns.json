@@ -12,8 +12,7 @@
             "name": "Nakuru",
             "roads_to": [
                 {"Nairobi": 237},
-                {"Kisumu": 185},
-                {"Thika": 420}
+                {"Kisumu": 185}
             ]
         },
         {
@@ -25,8 +24,7 @@
         {
             "name": "Thika",
             "roads_to": [
-                {"Nairobi": 45},
-                {"Nakuru": 420}
+                {"Nairobi": 45}
             ]
         },
         {
@@ -48,6 +46,11 @@
         "Nakuru_Mombasa" : 577,
         "Nairobi_Thika" : 38,
         "Nairobi_Mombasa" : 440,
-        "Thika_Mombasa" : 442
+        "Thika_Mombasa" : 442,
+        "Kisumu": 0,
+        "Nairobi": 0,
+        "Nakuru": 0,
+        "Thika": 0,
+        "Mombasa": 0
         }
 }

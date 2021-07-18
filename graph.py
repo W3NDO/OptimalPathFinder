@@ -4,6 +4,7 @@ class Graph:
         self.graph = {}
         self.start = None
         self.end = None
+        self.nodeNames = []
 
     def addNode(self, node):
         #Node into array for lookup later
@@ -12,6 +13,8 @@ class Graph:
 
         #node into dictionary
         self.graph[title] = node
+
+        self.nodeNames.append(title)
 
     def getNode(self, node):
         temp = self.graph[node]
@@ -24,3 +27,9 @@ class Graph:
     def setEnd(self, town):
         self.end = self.graph[town]
         return self.end
+
+    def showNodes(self):
+        list = []
+        for i in self.nodes:
+            list.append(i.value)
+        return list
