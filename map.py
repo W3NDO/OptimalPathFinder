@@ -35,7 +35,9 @@ while running:
     pygame.draw.line(screen, green, (420, 360), (540, 290))
     pygame.draw.line(screen, green, (420, 360), (770, 400))
 
-    pygame.display.update()
+    for i in range(3):
+        pygame.draw.line(screen, green, (420, i), (770, 12*i**2))
+        pygame.display.update()
     
 
 pygame.quit()

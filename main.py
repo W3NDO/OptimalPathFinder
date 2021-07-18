@@ -4,7 +4,6 @@ import graph as Graph
 import aStarNode as A_S_Node
 import priorityQueue as P_Queue
 
-
 #Import the town data
 dataFile = open('towns.json')
 data = json.load(dataFile)
@@ -39,6 +38,12 @@ def create_graph(graph):
         graph.addNode(n)
         # print(graph.nodes)
 
+steps = []
+def step(current):
+    steps.append(current)
+    return current
+    
+
 def create_a_star_graph(graph):
     for i in range(len(towns)):
         town = towns[i]["name"]
@@ -71,11 +76,12 @@ def BreadthFirst(start, end):
 
     while len(queue) > 0:
         current = queue.pop(0)
-        #print("Checking: ", current.value)
+        step(current.value)
         if current == end:
             # print("Found Target:", current.value)
             break
 
+        step(current.value )
         edges = current.edges
         for edge in edges:
             neighbour = graph_bfs.getNode(list(edge.keys())[0])
@@ -100,7 +106,7 @@ def BreadthFirst(start, end):
         if i != 0:
             txt += " --> "
 
-    print(txt) 
+    print(txt)
 
 def DepthFirst(start, end):
     graph_dfs = Graph.Graph()
@@ -207,4 +213,4 @@ def run (start, goal):
     DepthFirst(start, goal)
     aStar(start, goal)
 
-run("Juja", "Thika")
+run("Mombasa", "Thika")
