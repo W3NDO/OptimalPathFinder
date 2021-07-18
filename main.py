@@ -12,7 +12,7 @@ dataFile.close()
 graph = graph.Graph()
 
 towns = data["towns"]
-# print(towns)
+
 for i in range(len(towns)):
     town = towns[i]["name"]
     roads_to = towns[i]["roads_to"]
@@ -37,20 +37,20 @@ def BreadthFirst(start, end):
 
     while len(queue) > 0:
         current = queue.pop(0)
-        #print("Checking : ", current.value)
+        #print("Checking: ", current.value)
         if current == end:
-            print("Found:", current.value)
+            print("Found Target:", current.value)
             break
 
         edges = current.edges
         for edge in edges:
             neighbour = graph.getNode(list(edge.keys())[0])
+            # print("Neighbour: ", neighbour.value)
 #           print(current.value, "is neighbours with ", neighbour.value)
             if not neighbour.searched:
                 neighbour.searched = True
                 neighbour.parent = current
                 queue.append(neighbour)
-
 
     path = []
     path.append(end)
@@ -79,17 +79,19 @@ def DepthFirst(start, end):
 
     while len(stack) > 0:
         current = stack.pop()
+        # print("Checking: ", current.value)
         if current == end:
             print("Found : ", current.value)
             break
         edges = current.edges
         for edge in edges:
             neighbour = graph.getNode(list(edge.keys())[0])
-
+            # print("Checking Neighbour: ", neighbour.value)
             if not neighbour.searched:
                 neighbour.searched = True
                 neighbour.Parent = current
-                stack.append(neighbbour)
+                stack.append(neighbour)
+
     path = []
     path.append(end)
     nextNode = end.parent
@@ -104,8 +106,17 @@ def DepthFirst(start, end):
             txt += " --> "
     print(txt)
 
-def aStart(start, end, h):
-    print("hellur")
+def aStar(start, end, h):
+    #using straight line distance as a heuristic.
+    #list of straight line distances is in the variable straight line distances in towns.json
+    straight_line_distances = data["straight_line_distances"]
+    print(straight_line_distances["Kisumu_Nakuru"])
+    print("Path using A* :: ")
 
-BreadthFirst("Thika", "Mombasa")
-DepthFirst("Thika", "Mombasa")
+BreadthFirst("Kisumu", "Mombasa")
+DepthFirst("Kisumu", "Mombasa")
+aStar("Kisumu", "Mombasa", 123)
+
+
+
+

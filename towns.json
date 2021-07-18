@@ -12,7 +12,8 @@
             "name": "Nakuru",
             "roads_to": [
                 {"Nairobi": 237},
-                {"Kisumu": 185}
+                {"Kisumu": 185},
+                {"Thika": 420}
             ]
         },
         {
@@ -24,7 +25,8 @@
         {
             "name": "Thika",
             "roads_to": [
-                {"Nairobi": 45}
+                {"Nairobi": 45},
+                {"Nakuru": 420}
             ]
         },
         {
@@ -33,5 +35,19 @@
                 {"Nairobi": 483}
             ]
         }
-    ]
+    ],
+
+    "straight_line_distances" : 
+        {
+        "Kisumu_Nakuru": 146,
+        "Kisumu_Nairobi" : 264,
+        "Kisumu_Thika" : 278,
+        "Kisumu_Mombasa": 700,
+        "Nakuru_Nairobi": 138,
+        "Nakuru_Thika": 139,
+        "Nakuru_Mombasa" : 577,
+        "Nairobi_Thika" : 38,
+        "Nairobi_Mombasa" : 440,
+        "Thika_Mombasa" : 442
+        }
 }
