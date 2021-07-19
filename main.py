@@ -4,6 +4,30 @@ import graph as Graph
 import aStarNode as A_S_Node
 import priorityQueue as P_Queue
 
+import pygame
+from pygame.locals import *
+
+#GUI constants
+display_width = 800
+display_height = 600
+
+BLACK = (0,0,0)
+WHITE = (255,255,255)
+RED = (255,0,0)
+GREEN = (0, 255, 0)
+BLUE = (0,0, 255)
+GREY = (40,40,40)
+
+#Town display locations
+def townDisplay(town, checking):
+    color = GREEN
+    if checking == True:
+        color = RED
+
+    #switch town
+    #create switch statement
+
+
 #Import the town data
 dataFile = open('towns.json')
 data = json.load(dataFile)
@@ -62,7 +86,19 @@ def BreadthFirst(start, end):
     graph_bfs = Graph.Graph()
     #Add nodes to graph
     create_graph(graph_bfs)
-    
+
+    screen = pygame.display.set_mode((display_width, display_height))
+    pygame.init()
+    running = True
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        screen.fill(GREY)
+        #
+
     if start not in graph_bfs.nodeNames or end not in graph_bfs.nodeNames:
         print("Unknown Town")
         return 0
@@ -213,4 +249,4 @@ def run (start, goal):
     DepthFirst(start, goal)
     aStar(start, goal)
 
-run("Mombasa", "Thika")
+run("Kisumu", "Thika")
