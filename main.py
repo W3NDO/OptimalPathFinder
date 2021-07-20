@@ -4,28 +4,25 @@ import graph as Graph
 import aStarNode as A_S_Node
 import priorityQueue as P_Queue
 
-import pygame
-from pygame.locals import *
-
-#GUI constants
-display_width = 800
-display_height = 600
-
-BLACK = (0,0,0)
-WHITE = (255,255,255)
-RED = (255,0,0)
-GREEN = (0, 255, 0)
-BLUE = (0,0, 255)
-GREY = (40,40,40)
-
 #Town display locations
-def townDisplay(town, checking):
-    color = GREEN
-    if checking == True:
-        color = RED
+def townDisplay(town, parent):
+    towns = [ 
+        ("Kisumu", False, None),
+        ("Nakuru", False, None),
+        ("Nairobi", False, None),
+        ("Thika", False, None),
+        ("Mombasa", False, None)        
+    ]
+    for i in range(len(towns)):
+        if towns[i][0] != town:
+            pass
+        else:
+            if parent == None:
+                towns[i] = (towns[i][0], True, None)
+            else: 
+               towns[i] = (towns[i][0], True, parent)
 
-    #switch town
-    #create switch statement
+    return towns
 
 
 #Import the town data
@@ -87,17 +84,6 @@ def BreadthFirst(start, end):
     #Add nodes to graph
     create_graph(graph_bfs)
 
-    screen = pygame.display.set_mode((display_width, display_height))
-    pygame.init()
-    running = True
-
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-        screen.fill(GREY)
-        #
 
     if start not in graph_bfs.nodeNames or end not in graph_bfs.nodeNames:
         print("Unknown Town")
@@ -106,13 +92,20 @@ def BreadthFirst(start, end):
     end = graph_bfs.setEnd(end)
 
     queue = []
+    attempts = [] #an array of how the towns were tested
 
     start.searched = True
     queue.append(start)
 
     while len(queue) > 0:
         current = queue.pop(0)
-        step(current.value)
+
+        #update the attempts and the path.
+        if current.parent == None:
+            attempts.append(townDisplay(current.value, None))
+        else: 
+            attempts.append(townDisplay(current.value, current.parent.value))
+        
         if current == end:
             # print("Found Target:", current.value)
             break
@@ -134,15 +127,17 @@ def BreadthFirst(start, end):
         path.append(nextNode)
         nextNode = nextNode.parent
 
-    txt = "Path using BFS :: "
+    txt = ""
 
     for i in range(len(path))[::-1]:
         n = path[i]
         txt += n.value 
         if i != 0:
             txt += " --> "
-
-    print(txt)
+    
+    # print(txt)
+    # print("BFS attempts: ", attempts)
+    return attempts, txt
 
 def DepthFirst(start, end):
     graph_dfs = Graph.Graph()
@@ -154,12 +149,20 @@ def DepthFirst(start, end):
     start = graph_dfs.setStart(start)
     end = graph_dfs.setEnd(end)
 
+    attempts = []
     stack = []
     start.searched = True
     stack.append(start)
 
     while len(stack) > 0:
         current = stack.pop()
+        
+        #update the attempts and the path.
+        if current.parent == None:
+            attempts.append(townDisplay(current.value, None))
+        else: 
+            attempts.append(townDisplay(current.value, current.parent.value))
+
         # print("Checking: ", current.value)
         if current == end:
             # print("Found Tagret: ", current.value)
@@ -182,13 +185,16 @@ def DepthFirst(start, end):
         path.append(nextNode)
         nextNode = nextNode.parent
     
-    txt = "Path using DFS :: "
+    txt = ""
     for i in range(len(path))[::-1]:
         n = path[i]
         txt += n.value
         if i != 0:
             txt += " --> "
-    print(txt)
+    
+    print("DFS Attempts: ", attempts)
+    # print(txt)
+    return attempts, txt
 
 def aStar(start, end):
     #using straight line distance (Euclidean Distance) as a heuristic.
@@ -217,10 +223,19 @@ def aStar(start, end):
     open_list.addElem((start.setF(start.g + start.h), start)) #at the beginning, the g value is 0. 
     closed_list = []
 
+    attempts = [] #array to hold how all paths were tried. 
+
     while len(open_list.queue) != 0:
         closed_list.append(open_list.queue[0][1].value)
         # print(open_list.queue[0][1].value , {"f: ": open_list.queue[0][1].f , "g: ": open_list.queue[0][1].g, "h: ": open_list.queue[0][1].h} )
         current = open_list.pop()[1]
+        
+        #update the attempts and the path.
+        if current.parent == None:
+            attempts.append(townDisplay(current.value, None))
+        else: 
+            attempts.append(townDisplay(current.value, current.parent.value))
+
         if current.value == end.value:
             # print("Found Target:", current.value)
             break
@@ -242,11 +257,17 @@ def aStar(start, end):
                 open_list.addElem((neighbour.f ,neighbour))
                 # print(open_list.queue)
 
-    print("Path using AStar :: " ," --> ".join(closed_list))
+    txt = (" --> ".join(closed_list))
+    # print("Path using AStar :: " ," --> ".join(closed_list))
+    # print("A Start Attempts: ", attempts)
+    return attempts, txt
 
-def run (start, goal):
-    BreadthFirst(start, goal)
-    DepthFirst(start, goal)
-    aStar(start, goal)
+# def run (start, goal):
+#     BreadthFirst(start, goal)
+#     DepthFirst(start, goal)
+#     aStar(start, goal)
 
-run("Kisumu", "Thika")
+# run("Nakuru", "Mombasa")
+
+dfs = DepthFirst("Nakuru", "Mombasa")
+print(dfs)
