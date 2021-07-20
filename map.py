@@ -41,8 +41,8 @@ aStar_attempts = aStar[0]
 
 bfs_optimal = bfs[1].split(" --> ")
 dfs_optimal = dfs[1].split(" --> ")
-aStar_optimal = aStar[1]
-print("DFS: ", dfs_optimal)
+aStar_optimal = aStar[1].split(" --> ")
+print("DFS: ", aStar_optimal)
 screen= pygame.display.set_mode((display_width,display_height))
 
 def highlight(town, parent):
