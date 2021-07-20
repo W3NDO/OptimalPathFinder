@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import main as algorithms
+pygame.font.init()
 
 display_width = 800
 display_height = 600
@@ -13,6 +14,13 @@ green = (0, 255, 0)
 path = (230,230,250)
 blue = (0, 0, 255)
 
+font = pygame.font.SysFont(None, 24)
+kisumu_label = font.render('KISUMU', True, white)
+nakuru_label = font.render('NAKURU', True, white)
+nairobi_label = font.render('NAIROBI', True, white)
+thika_label = font.render('THIKA', True, white)
+mombasa_label = font.render('MOMBASA', True, white)
+
 
 
 def setup(start, end):
@@ -23,7 +31,7 @@ def setup(start, end):
 
     return bfs, dfs, aStar
 
-attempts = setup("Nakuru", "Mombasa")
+attempts = setup("Kisumu", "Mombasa")
 bfs = attempts[0]
 dfs = attempts[1]
 aStar = attempts[2]
@@ -131,35 +139,31 @@ def optimal(arr): #highlights the optimal path
             if i == len(arr)-1:
                 break            
             elif arr[i+1] == "Kisumu":
-                pygame.draw.line(screen, path, (44, 324), (264, 244))
+                pygame.draw.line(screen, path, (44, 328), (264, 248))
             elif arr[i+1] == "Nairobi":
-                pygame.draw.line(screen, path, (264, 244), (424, 364))
+                pygame.draw.line(screen, path, (264, 248), (424, 368))
         elif arr[i] == "Nairobi":
             pygame.draw.ellipse(screen, path, (display_width/2, display_height/2+40, 42,42), width = 2)
             if i == len(arr)-1:
                 break            
             elif arr[i+1] == "Thika":
-                pygame.draw.line(screen, path, (424, 364), (544, 294))
+                pygame.draw.line(screen, path, (424, 368), (544, 298))
             elif arr[i+1] == "Nakuru":
-                pygame.draw.line(screen, path, (264, 244), (424, 364))
+                pygame.draw.line(screen, path, (264, 248), (424, 368))
             elif arr[i+1] == "Mombasa":
-                pygame.draw.line(screen, path, (424, 364), (774, 404))
-            if i == len(arr)-1:
-                break            
-            elif arr[i+1] == "Nairobi":
-                pygame.draw.line(screen, path, (424, 364), (544, 294))
+                pygame.draw.line(screen, path, (424, 368), (774, 408))
         elif arr[i] == "Thika":
             pygame.draw.ellipse(screen, path, (display_width/2 + 120, display_height/2-30, 42,42), width = 2)
             if i == len(arr)-1:
                 break            
             elif arr[i+1] == "Nairobi":
-                pygame.draw.line(screen, path, (424, 364), (544, 294))      
+                pygame.draw.line(screen, path, (424, 368), (544, 298))      
         elif arr[i] == "Mombasa":
             pygame.draw.ellipse(screen, path, (display_width/2 + 350, display_height/2+80, 42,42), width = 2)
             if i == len(arr)-1:
                 break            
             elif arr[i+1] == "Nairobi":
-                pygame.draw.line(screen, path, (424, 364), (774, 404))
+                pygame.draw.line(screen, path, (424, 368), (774, 408))
 
 pygame.init()
 
@@ -183,14 +187,23 @@ while running:
     pygame.draw.line(screen, red, (260, 240), (420, 360))
     pygame.draw.line(screen, red, (420, 360), (540, 290))
     pygame.draw.line(screen, red, (420, 360), (770, 400))
-         
 
-    for track in bfs_attempts: #Change this to see different paths
+    #Label the towns
+    screen.blit(kisumu_label, (20, display_height/2 + 50))
+    screen.blit(nakuru_label, (220, display_height/2 - 20))
+    screen.blit(nairobi_label, (display_width/2, display_height/2 + 90))
+    screen.blit(thika_label, (display_width/2 + 120, display_height/2 +20))
+    screen.blit(mombasa_label, (display_width/2 + 300, display_height/2 + 130))         
+
+    optimal_path = "Optimal Path = " + " --> ".join(aStar_optimal)
+    for track in aStar_attempts: #Change this to see different paths
         for town in track:
             if town[1] == True:
                 highlight(town[0], town[2])
                 pygame.time.wait(750)
         optimal(dfs_optimal)
+        
+        screen.blit(font.render(optimal_path, True, white), (display_width/2 - 250, display_height/2 + 200))
         pygame.display.update()        
     
 
