@@ -31,7 +31,7 @@ def setup(start, end):
 
     return bfs, dfs, aStar
 
-attempts = setup("Kisumu", "Mombasa")
+attempts = setup("Thika", "Kisumu") #Change towns here to change path
 bfs = attempts[0]
 dfs = attempts[1]
 aStar = attempts[2]
@@ -195,8 +195,8 @@ while running:
     screen.blit(thika_label, (display_width/2 + 120, display_height/2 +20))
     screen.blit(mombasa_label, (display_width/2 + 300, display_height/2 + 130))         
 
-    optimal_path = "Optimal Path = " + " --> ".join(aStar_optimal)
-    for track in aStar_attempts: #Change this to see different paths
+    optimal_path = "Optimal Path = " + " --> ".join(bfs_optimal)
+    for track in dfs_attempts: #Change this to see different paths (bfs_attempts, dfs_attempts, aStar_attempts)
         for town in track:
             if town[1] == True:
                 highlight(town[0], town[2])

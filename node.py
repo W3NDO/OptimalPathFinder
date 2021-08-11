@@ -7,6 +7,6 @@ class Node:
         self.searched = False
         self.parent = None
 
-    def addEdge(self, road):
-        self.edges.append(road)
+    def addEdge(self, road_to):
+        self.edges.append(road_to)
         #print(self.value, road)

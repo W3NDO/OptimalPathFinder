@@ -16,7 +16,7 @@ class Graph:
 
         self.nodeNames.append(title)
 
-    def getNode(self, node):
+    def getNode(self, node): #graph.getNode("Kisumu")
         temp = self.graph[node]
         return temp
        

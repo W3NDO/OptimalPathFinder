@@ -24,7 +24,6 @@ def townDisplay(town, parent):
 
     return towns
 
-
 #Import the town data
 dataFile = open('towns.json')
 data = json.load(dataFile)
@@ -58,11 +57,6 @@ def create_graph(graph):
 
         graph.addNode(n)
         # print(graph.nodes)
-
-steps = []
-def step(current):
-    steps.append(current)
-    return current
     
 
 def create_a_star_graph(graph):
@@ -88,7 +82,7 @@ def BreadthFirst(start, end):
     if start not in graph_bfs.nodeNames or end not in graph_bfs.nodeNames:
         print("Unknown Town")
         return 0
-    start =graph_bfs.setStart(start)
+    start = graph_bfs.setStart(start)
     end = graph_bfs.setEnd(end)
 
     queue = []
@@ -110,7 +104,6 @@ def BreadthFirst(start, end):
             # print("Found Target:", current.value)
             break
 
-        step(current.value )
         edges = current.edges
         for edge in edges:
             neighbour = graph_bfs.getNode(list(edge.keys())[0])
@@ -135,7 +128,7 @@ def BreadthFirst(start, end):
         if i != 0:
             txt += " --> "
     
-    # print(txt)
+    print("Path using BFS: ", txt)
     # print("BFS attempts: ", attempts)
     return attempts, txt
 
@@ -150,7 +143,7 @@ def DepthFirst(start, end):
     end = graph_dfs.setEnd(end)
 
     attempts = []
-    stack = []
+    stack = [] #stack.pop()
     start.searched = True
     stack.append(start)
 
@@ -192,8 +185,8 @@ def DepthFirst(start, end):
         if i != 0:
             txt += " --> "
     
-    print("DFS Attempts: ", attempts)
-    # print(txt)
+    # print("DFS Attempts: ", attempts)
+    print("Path using DFS ::", txt)
     return attempts, txt
 
 def aStar(start, end):
@@ -220,17 +213,19 @@ def aStar(start, end):
     start.setG(0)
     start.setH(getSLD(start.value, end.value))
     start.searched = True
-    open_list.addElem((start.setF(start.g + start.h), start)) #at the beginning, the g value is 0. 
-    closed_list = []
+    open_list.addElem((start.setF(start.g + start.h), start)) #at the beginning, the g value is 0.
+    closed_list = [] #holds the names of the towns
 
     attempts = [] #array to hold how all paths were tried. 
 
-    while len(open_list.queue) != 0:
+    #open_list elements are a 2-tuple of the form (f(), NodeObject)
+
+    while len(open_list.queue) != 0: 
         closed_list.append(open_list.queue[0][1].value)
         # print(open_list.queue[0][1].value , {"f: ": open_list.queue[0][1].f , "g: ": open_list.queue[0][1].g, "h: ": open_list.queue[0][1].h} )
         current = open_list.pop()[1]
         
-        #update the attempts and the path.
+        #update the attempts sequence
         if current.parent == None:
             attempts.append(townDisplay(current.value, None))
         else: 
@@ -242,7 +237,8 @@ def aStar(start, end):
 
         edges = current.edges
         for edge in edges:
-            neighbour = graph.getNode(list(edge.keys())[0])
+            neighbour = graph.getNode(list(edge.keys())[0]) #get the neighbour node at the end of this edge
+            
             if not neighbour.searched:
                 neighbour.searched = True
                 neighbour.parent = current
@@ -258,16 +254,16 @@ def aStar(start, end):
                 # print(open_list.queue)
 
     txt = (" --> ".join(closed_list))
-    # print("Path using AStar :: " ," --> ".join(closed_list))
+    print("Path using AStar :: " ," --> ".join(closed_list))
     # print("A Start Attempts: ", attempts)
     return attempts, txt
 
-# def run (start, goal):
-#     BreadthFirst(start, goal)
-#     DepthFirst(start, goal)
-#     aStar(start, goal)
+def run (start, goal):
+    BreadthFirst(start, goal)
+    DepthFirst(start, goal)
+    aStar(start, goal)
 
-# run("Nakuru", "Mombasa")
+run("Kisumu", "Mombasa")
 
-dfs = DepthFirst("Nakuru", "Mombasa")
-print(dfs)
+# bfs = aStar("Kisumu", "Thika")
+# print(bfs)
