@@ -3,6 +3,7 @@ import node as node
 import graph as Graph
 import aStarNode as A_S_Node
 import priorityQueue as P_Queue
+import random
 
 #Town display locations
 def townDisplay(town, parent):
@@ -250,12 +251,26 @@ def aStar(start, end):
                 neighbour.setH(h)
                 
                 neighbour.current = current.value
+                neighbour.parent = current
                 open_list.addElem((neighbour.f ,neighbour))
-                # print(open_list.queue)
+                #print(open_list.queue[0][1].value, open_list.queue[0][0] )
 
-    txt = (" --> ".join(closed_list))
-    print("Path using AStar :: " ," --> ".join(closed_list))
-    # print("A Start Attempts: ", attempts)
+    path = []
+    path.append(end)
+    nextNode = end.parent
+    while nextNode != None:
+        path.append(nextNode)
+        nextNode = nextNode.parent
+    
+    txt = ""
+    for i in range(len(path))[::-1]:
+        n = path[i]
+        txt += n.value
+        if i != 0:
+            txt += " --> "
+            
+    print("Path using AStar :: " ,txt)
+    #print("A Start Attempts: ", attempts)
     return attempts, txt
 
 def run (start, goal):
@@ -263,7 +278,9 @@ def run (start, goal):
     DepthFirst(start, goal)
     aStar(start, goal)
 
-run("Kisumu", "Mombasa")
+run("Kisumu", "Garissa")
+#DFS not optimal on Isiolo -> Malindi
+#BFS not optimal Kitui -> Eldoret
 
 # bfs = aStar("Kisumu", "Thika")
 # print(bfs)

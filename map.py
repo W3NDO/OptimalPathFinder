@@ -47,70 +47,70 @@ screen= pygame.display.set_mode((display_width,display_height))
 
 def highlight(town, parent):
     if town == "Kisumu":
-        pygame.draw.ellipse(screen, green, (20, display_height/2, 40, 40))
+        pygame.draw.ellipse(screen, blue, (20, display_height/2, 40, 40))
         pygame.draw.ellipse(screen, red, (240, display_height/2-80, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2, display_height/2+40, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 120, display_height/2-30, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 350, display_height/2+80, 40,40))
 
         if parent == "Nakuru":
-            pygame.draw.line(screen, green, (40, 320), (260, 240))
+            pygame.draw.line(screen, blue, (40, 320), (260, 240))
             pygame.draw.line(screen, red, (260, 240), (420, 360))
             pygame.draw.line(screen, red, (420, 360), (540, 290))
             pygame.draw.line(screen, red, (420, 360), (770, 400))
 
     elif town == "Nakuru":
         pygame.draw.ellipse(screen, red, (20, display_height/2, 40, 40))
-        pygame.draw.ellipse(screen, green, (240, display_height/2-80, 40,40))
+        pygame.draw.ellipse(screen, blue, (240, display_height/2-80, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2, display_height/2+40, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 120, display_height/2-30, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 350, display_height/2+80, 40,40))
 
         if parent == "Kisumu":
-            pygame.draw.line(screen, green, (40, 320), (260, 240))
+            pygame.draw.line(screen, blue, (40, 320), (260, 240))
             pygame.draw.line(screen, red, (260, 240), (420, 360))
             pygame.draw.line(screen, red, (420, 360), (540, 290))
             pygame.draw.line(screen, red, (420, 360), (770, 400))
         elif parent == "Nairobi": 
             pygame.draw.line(screen, red, (40, 320), (260, 240))
-            pygame.draw.line(screen, green, (260, 240), (420, 360))
+            pygame.draw.line(screen, blue, (260, 240), (420, 360))
             pygame.draw.line(screen, red, (420, 360), (540, 290))
             pygame.draw.line(screen, red, (420, 360), (770, 400))
 
     elif town == "Nairobi":
         pygame.draw.ellipse(screen, red, (20, display_height/2, 40, 40))
         pygame.draw.ellipse(screen, red, (240, display_height/2-80, 40,40))
-        pygame.draw.ellipse(screen, green, (display_width/2, display_height/2+40, 40,40))
+        pygame.draw.ellipse(screen, blue, (display_width/2, display_height/2+40, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 120, display_height/2-30, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 350, display_height/2+80, 40,40))
 
         if parent == "Nakuru":
             pygame.draw.line(screen, red, (40, 320), (260, 240))
-            pygame.draw.line(screen, green, (260, 240), (420, 360))
+            pygame.draw.line(screen, blue, (260, 240), (420, 360))
             pygame.draw.line(screen, red, (420, 360), (540, 290))
             pygame.draw.line(screen, red, (420, 360), (770, 400))
         elif parent == "Thika": 
             pygame.draw.line(screen, red, (40, 320), (260, 240))
             pygame.draw.line(screen, red, (260, 240), (420, 360))
-            pygame.draw.line(screen, green, (420, 360), (540, 290))
+            pygame.draw.line(screen, blue, (420, 360), (540, 290))
             pygame.draw.line(screen, red, (420, 360), (770, 400))
         elif parent == "Mombasa":
             pygame.draw.line(screen, red, (40, 320), (260, 240))
             pygame.draw.line(screen, red, (260, 240), (420, 360))
             pygame.draw.line(screen, red, (420, 360), (540, 290))
-            pygame.draw.line(screen, green, (420, 360), (770, 400))
+            pygame.draw.line(screen, blue, (420, 360), (770, 400))
 
     elif town == "Thika":
         pygame.draw.ellipse(screen, red, (20, display_height/2, 40, 40))
         pygame.draw.ellipse(screen, red, (240, display_height/2-80, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2, display_height/2+40, 40,40))
-        pygame.draw.ellipse(screen, green, (display_width/2 + 120, display_height/2-30, 40,40))
+        pygame.draw.ellipse(screen, blue, (display_width/2 + 120, display_height/2-30, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 350, display_height/2+80, 40,40))
 
         if parent == "Nairobi": 
             pygame.draw.line(screen, red, (40, 320), (260, 240))
             pygame.draw.line(screen, red, (260, 240), (420, 360))
-            pygame.draw.line(screen, green, (420, 360), (540, 290))
+            pygame.draw.line(screen, blue, (420, 360), (540, 290))
             pygame.draw.line(screen, red, (420, 360), (770, 400))
 
     elif town == "Mombasa":
@@ -118,13 +118,13 @@ def highlight(town, parent):
         pygame.draw.ellipse(screen, red, (240, display_height/2-80, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2, display_height/2+40, 40,40))
         pygame.draw.ellipse(screen, red, (display_width/2 + 120, display_height/2-30, 40,40))
-        pygame.draw.ellipse(screen, green, (display_width/2 + 350, display_height/2+80, 40,40))
+        pygame.draw.ellipse(screen, blue, (display_width/2 + 350, display_height/2+80, 40,40))
 
         if parent == "Nairobi": 
             pygame.draw.line(screen, red, (40, 320), (260, 240))
             pygame.draw.line(screen, red, (260, 240), (420, 360))
             pygame.draw.line(screen, red, (420, 360), (540, 290))
-            pygame.draw.line(screen, green, (420, 360), (770, 400))
+            pygame.draw.line(screen, blue, (420, 360), (770, 400))
 
 def optimal(arr): #highlights the optimal path
     for i in range(len(arr)):
@@ -196,7 +196,7 @@ while running:
     screen.blit(mombasa_label, (display_width/2 + 300, display_height/2 + 130))         
 
     optimal_path = "Optimal Path = " + " --> ".join(bfs_optimal)
-    for track in dfs_attempts: #Change this to see different paths (bfs_attempts, dfs_attempts, aStar_attempts)
+    for track in aStar_attempts: #Change this to see different paths (bfs_attempts, dfs_attempts, aStar_attempts)
         for town in track:
             if town[1] == True:
                 highlight(town[0], town[2])
