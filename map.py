@@ -35,7 +35,7 @@ def setup(start, end):
 
     return bfs, dfs, aStar
 
-attempts = setup("Kisumu", "Garissa") #Change towns here to change path
+attempts = setup("Kisumu", "Malindi") #Change towns here to change path
 bfs = attempts[0]
 dfs = attempts[1]
 aStar = attempts[2]
@@ -614,10 +614,10 @@ while running:
     screen.blit(mombasa_label, (690, 380))
 
     optimal_path = "Optimal Path = " + " --> ".join(aStar_optimal)
-    for track in aStar_attempts: #Change this to see different paths (bfs_attempts, dfs_attempts, aStar_attempts)
+    for track in bfs_attempts: #Change this to see different paths (bfs_attempts, dfs_attempts, aStar_attempts)
         for town in track:
             if town[1] == True:
-                # highlight(town[0], town[2])
+                highlight(town[0], town[2])
                 pygame.time.wait(750)
         optimal(aStar_optimal)
 

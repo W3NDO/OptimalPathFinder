@@ -12,7 +12,12 @@ def townDisplay(town, parent):
         ("Nakuru", False, None),
         ("Nairobi", False, None),
         ("Thika", False, None),
-        ("Mombasa", False, None)        
+        ("Mombasa", False, None),
+        ("Eldoret", False, None),
+        ("Isiolo", False, None),
+        ("Garissa", False, None),
+        ("Kitui", False, None),
+        ("Malindi", False, None)    
     ]
     for i in range(len(towns)):
         if towns[i][0] != town:
